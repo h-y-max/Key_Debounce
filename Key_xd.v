@@ -21,7 +21,7 @@ module Key_xd(
        reg [1:0] state;
        reg [29:0] counter0;
        parameter MCNT0=1_000_000-1;
-       //状态机
+       //脳麓脤卢禄煤
        localparam IDLE=0;
        localparam P_filter=1;
        localparam wait_r=2;
@@ -29,7 +29,7 @@ module Key_xd(
        
 assign d_time=counter0>=MCNT0;
 
-//处理亚稳态
+//麓娄脌铆脩脟脦脠脤卢
 always@(posedge CLK)
      trigger0<=key;
 always@(posedge CLK)
@@ -92,6 +92,13 @@ always@(posedge CLK or negedge reset_n)
                     counter0<=counter0+1'd1;
                     state<=state;
                 end
+              default:begin
+                  state<=IDLE;
+                  waveform<=1'd1;
+                  r_signal<=0;
+                  p_signal<=0;
+                  cnt<=0;
+              end
             endcase
         end
 endmodule
